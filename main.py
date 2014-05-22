@@ -39,6 +39,9 @@ def get_ip():
 def render_page(ip):
     '''Get the ip information from ip-api and parse it,
         give the information and google map location'''
+    if not ip:
+        error = 'Please enter your IP'
+        return render_template('mainpage.html',error=error)
 
     ipapi = memc.get(str(ip))
 
@@ -77,4 +80,4 @@ def render_page(ip):
         return render_template('mainpage.html', error=error)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8101)
+    app.run(host='0.0.0.0',port=8101)
